@@ -1,14 +1,18 @@
-FROM ubuntu 
+FROM ubuntu:13.10
 MAINTAINER Zaiste <oh [at] zaiste.net>
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y build-essential python-software-properties python g++ make software-properties-common sqlite3 libsqlite3-dev curl
+RUN apt-get install -y build-essential g++ make sqlite3 libsqlite3-dev
 
-RUN add-apt-repository ppa:chris-lea/node.js 
-RUN apt-get update
-RUN apt-get install -y nodejs
+ADD http://nodejs.org/dist/node-latest.tar.gz /tmp
+RUN cd /tmp && \
+    cd node-v* && \
+    ./configure && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf node-v*
 
 ADD ./ghost /ghost
 RUN sed -i -e 's/127.0.0.1/0.0.0.0/g' ghost/config.example.js
