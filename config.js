@@ -4,7 +4,14 @@ var path = require('path'),
 config = {
     production: {
         url: process.env.GHOST_URL,
-        mail: {},
+        forceAdminSSL: process.env.GHOST_FORCE_ADMIN_SSL,
+        mail: {
+          transport: 'SES',
+          options: {
+            AWSAccessKeyID: process.env.AWS_ACCESS_KEY,
+            AWSSecretKey: process.env.AWS_SECRET_KEY
+          }
+        },
         database: {
             client: 'sqlite3',
             connection: {
