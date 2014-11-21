@@ -15,7 +15,7 @@ RUN cd /tmp && \
     cd .. && \
     rm -rf node-v*
 
-ADD https://ghost.org/zip/ghost-0.4.1.zip /tmp/ghost.zip
+ADD https://ghost.org/zip/ghost-0.5.5.zip /tmp/ghost.zip
 RUN unzip -d /ghost /tmp/ghost.zip
 ADD config.js /ghost/config.js
 

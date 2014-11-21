@@ -15,9 +15,9 @@ Build the image
 
 ## Updating Ghost
 
-[Ghost][2] is vendored using `git-submodule`. To pull the most recent version of Ghost use the following command:
+Replace the version in the following line, inside `Dockerfile`
 
-    git submodule update --recursive
+    https://ghost.org/zip/ghost-0.5.5.zip
 
 MIT License
 
