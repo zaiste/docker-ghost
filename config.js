@@ -6,10 +6,14 @@ config = {
         url: process.env.GHOST_URL,
         forceAdminSSL: process.env.GHOST_FORCE_ADMIN_SSL,
         mail: {
-          transport: 'SES',
+          transport: 'SMTP',
+          host: 'smtp.mandrillapp.com',
           options: {
-            AWSAccessKeyID: process.env.AWS_ACCESS_KEY,
-            AWSSecretKey: process.env.AWS_SECRET_KEY
+            service: 'Mandrill',
+            auth: {
+              user: process.env.MANDRILL_USER,
+              pass: process.env.MANDRILL_PASS
+            }
           }
         },
         database: {
