@@ -1,11 +1,11 @@
-FROM ubuntu:13.10
+FROM ubuntu:latest
 MAINTAINER Zaiste <oh [at] zaiste.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update
 RUN apt-get -qq -y install build-essential python unzip sqlite3 libsqlite3-dev
 
-ADD http://nodejs.org/dist/node-latest.tar.gz /tmp
+ADD http://nodejs.org/dist/v0.12.0/node-v0.12.0.tar.gz /tmp
 
 RUN cd /tmp && \
     cd node-v* && \
@@ -15,7 +15,7 @@ RUN cd /tmp && \
     cd .. && \
     rm -rf node-v*
 
-ADD https://ghost.org/zip/ghost-0.5.5.zip /tmp/ghost.zip
+ADD https://ghost.org/zip/ghost-0.5.8.zip /tmp/ghost.zip
 RUN unzip -d /ghost /tmp/ghost.zip
 ADD config.js /ghost/config.js
 
